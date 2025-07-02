@@ -1,0 +1,185 @@
+/* รีเซ็ตพื้นฐาน */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* พื้นหลังวิดีโอ */
+#background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+/* ปุ่มดูสมาชิก */
+.member-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: purple;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.member-button:hover {
+  background-color: #f3e8ff;
+  color: #663399;
+  transform: scale(1.05);
+}
+
+/* กล่องแจ้งเตือน */
+.alert {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: left;
+  animation: shake 0.3s ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+/* ปุ่มเปิด/ปิดเพลงมุมขวาล่าง */
+.music-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #000000;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  transition: 0.3s ease;
+}
+
+.music-toggle:hover {
+  background-color: #e70b0b;
+  transform: scale(1.05);
+}
+.volume-controls {
+  position: fixed;
+  bottom: 80px; /* อยู่เหนือปุ่ม toggle เพลงนิดนึง */
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.volume-controls button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.volume-controls button:hover {
+  background-color: #dd0808;
+}
+.member-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  padding: 10px 14px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+  z-index: 999;
+}
+
+.member-button:hover {
+  background-color: #e00707;
+  color: #f3f3f5;
+  transform: scale(1.05);
+}
+.language-select {
+      position: relative;
+      display: inline-block;
+    }
+
+    .language-select select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 8px 32px 8px 40px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background-color: white;
+      background-image: url('https://flagcdn.com/w40/th.png');
+      background-repeat: no-repeat;
+      background-position: 8px center;
+      background-size: 24px auto;
+      cursor: pointer;
+    }
+
+    .language-select::after {
+      content: \"▼\";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: gray;
+      pointer-events: none;
+    }
+    .back-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none; /* << ป้องกันเส้นใต้ */
+  box-shadow: 0 4px 10px rgb(255, 3, 3);
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.back-button:hover {
+  background: red;
+}
+
+
+/* เพิ่มแอนิเมชันสั่น */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}

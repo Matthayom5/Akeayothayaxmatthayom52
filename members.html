@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👥 Members</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="stylem.css">
+  <link rel="stylesheet" href="m5m.js">
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+<body class="relative bg-gray-100 min-h-screen flex flex-col items-center p-4 overflow-hidden">
+
+<!-- พื้นหลังวิดีโอ -->
+<div class="absolute inset-0 w-full h-full -z-20">
+  <video autoplay muted loop playsinline class="w-full h-full object-cover">
+    <source src="member.mp4" type="video/mp4" />
+  </video>
+  <!-- Overlay มืด -->
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+</div>
+
+<!-- เนื้อหาอยู่ด้านบน -->
+<div class="relative z-10">
+  <!-- ใส่พวกกล่องสมาชิกที่นี่ -->
+    <!-- 🧑‍🤝‍🧑 หัวเรื่อง -->
+
+<div class="text-center mt-8 mb-8">
+  <div class="text-white text-2xl font-bold bg-black bg-opacity-80 px-6 py-2 rounded-xl inline-block mx-auto">
+    NAME MEMBER
+  </div>
+</div>
+
+
+
+
+  <!-- 👥 รายชื่อสมาชิก -->
+  <div class="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 z-10">
+    <!-- 🔁 สมาชิกคนที่ 1 -->
+    <div onclick="showModal('Kittiphat Inthanoo', 'Leader', 'Earth.jpg', '_ktpnshzzz', 'Kittiphat.Inthanoo')" class="cursor-pointer bg-white rounded-2xl shadow-md p-4 flex items-center space-x-4 hover:scale-105 transform transition duration-200">
+      <img src="Earth.jpg" class="w-16 h-16 rounded-full" alt="Kittiphat">
+      <div>
+        <h3 class="text-lg font-[Poppins] font-bold">Kittiphat Inthanoo M.5/2 No.6</h3>
+        <p class="text-sm text-gray-500">Leader</p>
+      </div>
+    </div>
+    <!-- 🔁 สมาชิกคนอื่น ๆ เหมือนเดิม -->
+    <div onclick="showModal('Korn Anantcharoenkit', 'Assistant', 'zon.jpg', 'hznx_x', 'Korn.Anantcharoenkit')" class="cursor-pointer bg-white rounded-2xl shadow-md p-4 flex items-center space-x-4 hover:scale-105 transform transition duration-200">
+      <img src="zon.jpg" class="w-16 h-16 rounded-full" alt="Korn">
+      <div>
+        <h3 class="text-lg font-[Poppins] font-bold">Korn Anantcharoenkit M.5/2 No.13</h3>
+        <p class="text-sm text-gray-500">Assistant</p>
+      </div>
+    </div>
+    <div onclick="showModal('Thanathip Nakkasem', 'Members', 'Jeep.jpg', 'jxep_09', 'Thanathip.Nakkasem')" class="cursor-pointer bg-white rounded-2xl shadow-md p-4 flex items-center space-x-4 hover:scale-105 transform transition duration-200">
+      <img src="Jeep.jpg" class="w-16 h-16 rounded-full" alt="Thanathip">
+      <div>
+        <h3 class="text-lg font-[Poppins] font-bold">Thanathip Nakkasem M.5/2 No.14</h3>
+        <p class="text-sm text-gray-500">Members</p>
+      </div>
+    </div>
+    <div onclick="showModal('Koraphat Wongubol', 'Members', 'Tee.jpg', 'korxphat_tee', 'Koraphat.Wongubol')" class="cursor-pointer bg-white rounded-2xl shadow-md p-4 flex items-center space-x-4 hover:scale-105 transform transition duration-200">
+      <img src="Tee.jpg" class="w-16 h-16 rounded-full" alt="Koraphat">
+      <div>
+        <h3 class="text-lg font-[Poppins] font-bold">Koraphat Wongubol M.5/2 No.5</h3>
+        <p class="text-sm text-gray-500">Members</p>
+      </div>
+    </div>
+    <div onclick="showModal('Panita Phiamalang', 'Members', 'nam.jpg', '_n4mmx', 'Panita.Phiamalang')" class="cursor-pointer bg-white rounded-2xl shadow-md p-4 flex items-center space-x-4 hover:scale-105 transform transition duration-200">
+      <img src="nam.jpg" class="w-16 h-16 rounded-full" alt="Panita">
+      <div>
+        <h3 class="text-lg font-[Poppins] font-bold">Panita Phiamalang M.5/2 No.15</h3>
+        <p class="text-sm text-gray-500">Members</p>
+      </div>
+    </div>
+    <div onclick="showModal('Kittipoom Waksanthear', 'Members', 'boom.jpg', 'kittipoom_boom', 'Kittipoom.Waksanthear')" class="cursor-pointer bg-white rounded-2xl shadow-md p-4 flex items-center space-x-4 hover:scale-105 transform transition duration-200">
+      <img src="boom.jpg" class="w-16 h-16 rounded-full" alt="Kittipoom">
+      <div>
+        <h3 class="text-lg font-[Poppins] font-bold">Kittipoom Waksanthear M.5/2 No.7</h3>
+        <p class="text-sm text-gray-500">Members</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <!-- 🔙 ปุ่ม Back -->
+<audio id="back-sound" src="togglesound.mp3" preload="auto"></audio>
+<a href="index.html" class="font-bold font-[Poppins] back-button" title="กลับหน้าหลัก" onclick="playBackSound(event)">Back</a>
+
+  <!-- 🔲 Modal กล่องแสดงข้อมูล -->
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-6 shadow-xl max-w-sm w-full text-center">
+      <img id="modal-image" class="w-24 h-24 mx-auto rounded-full mb-4" src="" alt="" />
+      <h2 id="modal-name" class="text-xl font-bold"></h2>
+      <p id="modal-role" class="text-gray-600 mb-2"></p>
+      <div class="flex justify-center items-center gap-4 mb-4">
+        <a id="modal-ig" href="#" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="IG" class="w-6 h-6 hover:scale-110 transition" />
+        </a>
+        <a id="modal-fb" href="#" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="FB" class="w-6 h-6 hover:scale-110 transition" />
+        </a>
+      </div>
+      <button onclick="closeModal()" class="px-4 py-2 bg-blue-500 text-white rounded-xl">CLOSE</button>
+    </div>
+  </div>
+
+  <script>
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function showModal(name, role, image, ig, fb) {
+      document.getElementById('modal-name').textContent = name;
+      document.getElementById('modal-role').textContent = role;
+      document.getElementById('modal-image').src = image;
+      document.getElementById('modal-ig').href = `https://instagram.com/${ig}`;
+      document.getElementById('modal-fb').href = `https://facebook.com/${fb}`;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+    function playBackSound(event) {
+    event.preventDefault(); // กันการเปลี่ยนหน้าทันที
+    const audio = document.getElementById("back-sound");
+    audio.play();
+
+    // เปลี่ยนหน้า หลังจากเสียงเล่น (เช่น รอ 300ms)
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 300);
+  }
+  </script>
+
+</body>
+</html>

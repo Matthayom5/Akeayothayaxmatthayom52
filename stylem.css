@@ -1,0 +1,141 @@
+body {
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #663399;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 8px 0;
+      font-size: 18px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #0077cc;
+    }
+/* เพิ่ม animation shake */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake-on-hover:hover {
+  animation: shake 0.4s ease;
+}
+/* ปุ่มเปิด/ปิดเพลงมุมขวาล่าง */
+.music-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #000000;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  transition: 0.3s ease;
+}
+
+.music-toggle:hover {
+  background-color: #e70b0b;
+  transform: scale(1.05);
+}
+.volume-controls {
+  position: fixed;
+  bottom: 80px; /* อยู่เหนือปุ่ม toggle เพลงนิดนึง */
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.volume-controls button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.volume-controls button:hover {
+  background-color: #dd0808;
+}
+.member-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  padding: 10px 14px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+  z-index: 999;
+}
+
+.member-button:hover {
+  background-color: #e00707;
+  color: #f3f3f5;
+  transform: scale(1.05);
+}
+    .back-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none; /* << ป้องกันเส้นใต้ */
+  box-shadow: 0 4px 10px rgb(255, 3, 3);
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.back-button:hover {
+  background: red;
+}
+

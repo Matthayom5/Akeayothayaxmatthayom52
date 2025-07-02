@@ -1,0 +1,9 @@
+<style lang="postcss">
+.element {
+  @apply bg-white p-2 text-sm md:text-base rounded-md shadow cursor-pointer text-center hover:bg-blue-100 transition;
+}
+
+.disabled {
+  @apply opacity-30 cursor-not-allowed;
+}
+
