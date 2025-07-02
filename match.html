@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧮 Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url('match.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .calculator {
+      width: 320px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
+    }
+    #display {
+      width: 100%;
+      height: 60px;
+      font-size: 28px;
+      border: none;
+      outline: none;
+      padding: 10px;
+      text-align: right;
+      background: #f0f4f8;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 18px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background-color: #e3eaf1;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #d2dbe5;
+    }
+    .control-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .control-buttons button {
+      flex: 1;
+      background-color: red;
+      color: white;
+    }
+    .control-buttons button:hover {
+      background-color: red;
+    }
+    .scientific {
+      display: none;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+    }
+    .popup.show {
+      display: block;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 999;
+    }
+    .overlay.show {
+      display: block;
+    }
+.back-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none; /* << ป้องกันเส้นใต้ */
+  box-shadow: 0 4px 10px rgb(255, 3, 3);
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.back-button:hover {
+  background: red;
+}
+
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled />
+    <div class="buttons" id="basic-buttons">
+      <button onclick="append('7', '7')">7</button>
+      <button onclick="append('8', '8')">8</button>
+      <button onclick="append('9', '9')">9</button>
+      <button onclick="append('/', '÷')">÷</button>
+      <button onclick="append('4', '4')">4</button>
+      <button onclick="append('5', '5')">5</button>
+      <button onclick="append('6', '6')">6</button>
+      <button onclick="append('*', '×')">×</button>
+      <button onclick="append('1', '1')">1</button>
+      <button onclick="append('2', '2')">2</button>
+      <button onclick="append('3', '3')">3</button>
+      <button onclick="append('-', '−')">−</button>
+      <button onclick="append('0', '0')">0</button>
+      <button onclick="append('.', '.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="append('+', '+')">+</button>
+    </div>
+
+    <div class="buttons scientific" id="scientific-buttons">
+      <button onclick="append('Math.sin(', 'sin(')">sin</button>
+      <button onclick="append('Math.cos(', 'cos(')">cos</button>
+      <button onclick="append('Math.tan(', 'tan(')">tan</button>
+      <button onclick="append('Math.sqrt(', '√(')">√</button>
+      <button onclick="append('Math.log10(', 'log(')">log</button>
+      <button onclick="append('Math.pow(', '^(')">^</button>
+      <button onclick="append('(', '(')">(</button>
+      <button onclick="append(')', ')')">)</button>
+    </div>
+
+    <div class="control-buttons">
+      <button onclick="toggleMode()">เปลี่ยนแบบ</button>
+      <button onclick="clearDisplay()">เริ่มใหม่</button>
+    </div>
+  </div>
+
+<audio id="back-sound" src="togglesound.mp3" preload="auto"></audio>
+<a href="index.html" class="back-button" title="กลับหน้าหลัก" onclick="playBackSound(event)">Back</a>
+
+
+
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    สูตรไม่ถูกต้อง
+    <div style="text-align: right; margin-top: 15px;">
+      <button onclick="closePopup()" style="padding: 6px 12px; background: #4a90e2; color: white; border: none; border-radius: 6px;">ตกลง</button>
+    </div>
+  </div>
+
+  <audio id="toggle-sound" src="togglesound.mp3"></audio>
+  <audio id="clear-sound" src="clearsound.mp3"></audio>
+
+  <script>
+    let evalStr = '';
+    let displayStr = '';
+
+    function append(evalVal, displayVal) {
+      evalStr += evalVal;
+      displayStr += displayVal;
+      document.getElementById('display').value = displayStr;
+    }
+
+    function calculate() {
+      try {
+        let result = eval(evalStr);
+        if (result === undefined || isNaN(result)) throw 'Invalid';
+        document.getElementById('display').value = result;
+        evalStr = '' + result;
+        displayStr = '' + result;
+      } catch (e) {
+        showPopup();
+      }
+    }
+
+    function clearDisplay() {
+      evalStr = '';
+      displayStr = '';
+      document.getElementById('display').value = '';
+      document.getElementById('clear-sound').play();
+    }
+
+    function toggleMode() {
+      const sci = document.getElementById('scientific-buttons');
+      sci.style.display = sci.style.display === 'grid' ? 'none' : 'grid';
+      document.getElementById('toggle-sound').play();
+    }
+
+    function showPopup() {
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('popup').classList.add('show');
+    }
+
+    function closePopup() {
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('popup').classList.remove('show');
+    }
+    function playBackSound(event) {
+    event.preventDefault(); // กันการเปลี่ยนหน้าทันที
+    const audio = document.getElementById("back-sound");
+    audio.play();
+
+    // เปลี่ยนหน้า หลังจากเสียงเล่น (เช่น รอ 300ms)
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 300);
+  }
+  </script>
+</body>
+</html>
