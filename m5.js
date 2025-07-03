@@ -95,39 +95,3 @@ function playBackSound(event) {
       window.location.href = "index.html";
     }, 300);
   }
-  async function translateText() {
-  const input = document.getElementById("inputText").value.trim();
-  const source = document.getElementById("sourceLang").value;
-  const target = document.getElementById("targetLang").value;
-
-  if (!input) return alert("กรุณาใส่ข้อความก่อนแปล");
-  if (source === target) return alert("กรุณาเลือกภาษาต้นทางและปลายทางให้ต่างกัน");
-
-  const langMap = { th: "ไทย", eng: "อังกฤษ", zh: "จีนตัวย่อ" };
-
-  try {
-    const response = await fetch("https://akeayothayaxmatthayom52.vercel.app/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        input,
-        sourceLang: langMap[source],
-        targetLang: langMap[target]
-      })
-    });
-
-    const data = await response.json();
-    document.getElementById("outputText").innerText = data.result || "เกิดข้อผิดพลาดในการแปล";
-  } catch (err) {
-    console.error(err);
-    document.getElementById("outputText").innerText = "เกิดข้อผิดพลาดในการเชื่อมต่อ";
-  }
-}
-
-function speakText() {
-  const text = document.getElementById("outputText").innerText;
-  if (!text) return;
-  const utterance = new SpeechSynthesisUtterance(text);
-  speechSynthesis.speak(utterance);
-}
-
