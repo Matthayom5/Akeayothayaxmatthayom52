@@ -92,6 +92,6 @@ function playBackSound(event) {
 
     // เปลี่ยนหน้า หลังจากเสียงเล่น (เช่น รอ 300ms)
     setTimeout(() => {
-      window.location.href = "index.html";
+      window.location.href = "translate.html";
     }, 300);
   }
