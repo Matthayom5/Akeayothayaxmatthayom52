@@ -173,7 +173,39 @@
 .back-button:hover {
   background: red;
 }
+.btn-red {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
 
+  .btn-red:hover {
+    background-color: darkred;
+  }
+    .back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgb(255, 3, 3);
+    z-index: 1000;
+    transition: background 0.3s;
+  }
+
+  .back-button:hover {
+    background: red;
+  }
 
 /* เพิ่มแอนิเมชันสั่น */
 @keyframes shake {

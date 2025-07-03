@@ -6,120 +6,142 @@
   <title>🧮 Calculator</title>
   <style>
     * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: url('match.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
-    .calculator {
-      width: 320px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      padding: 20px;
-    }
-    #display {
-      width: 100%;
-      height: 60px;
-      font-size: 28px;
-      border: none;
-      outline: none;
-      padding: 10px;
-      text-align: right;
-      background: #f0f4f8;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 15px;
-    }
-    button {
-      padding: 18px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      background-color: #e3eaf1;
-      color: #333;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background-color: #d2dbe5;
-    }
-    .control-buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .control-buttons button {
-      flex: 1;
-      background-color: red;
-      color: white;
-    }
-    .control-buttons button:hover {
-      background-color: red;
-    }
-    .scientific {
-      display: none;
-    }
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 20px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      display: none;
-      z-index: 1000;
-    }
-    .popup.show {
-      display: block;
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      display: none;
-      z-index: 999;
-    }
-    .overlay.show {
-      display: block;
-    }
-.back-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: black;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none; /* << ป้องกันเส้นใต้ */
-  box-shadow: 0 4px 10px rgb(255, 3, 3);
-  z-index: 1000;
-  transition: background 0.3s;
-}
-.back-button:hover {
-  background: red;
-}
+    box-sizing: border-box;
+  }
 
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('match.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .calculator {
+    width: 340px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  #display {
+    width: 100%;
+    height: 60px;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.3);
+    color: #000;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 18px;
+    font-size: 20px;
+    border: none;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .control-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .control-buttons button {
+    flex: 1;
+    background: #ff3b30;
+    color: white;
+    border-radius: 14px;
+    font-size: 16px;
+  }
+
+  .control-buttons button:hover {
+    background: #ff1e1e;
+  }
+
+  .scientific {
+    display: none;
+  }
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+  }
+
+  .popup.show {
+    display: block;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 999;
+  }
+
+  .overlay.show {
+    display: block;
+  }
+
+  .back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgb(255, 3, 3);
+    z-index: 1000;
+    transition: background 0.3s;
+  }
+
+  .back-button:hover {
+    background: red;
+  }
   </style>
 </head>
 <body>
