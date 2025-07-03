@@ -106,7 +106,7 @@ function playBackSound(event) {
   const langMap = { th: "ไทย", eng: "อังกฤษ", zh: "จีนตัวย่อ" };
 
   try {
-    const response = await fetch("https://translate.google.com/?sl=th&tl=zh-CN&op=translate", {
+    const response = await fetch("https://akeayothayaxmatthayom52.vercel.app/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
