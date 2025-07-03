@@ -15,7 +15,7 @@
   <div class="absolute inset-0 w-full h-full bg-cover bg-center -z-10" style="background-image: url('translation.jpg');"></div>
 
 <audio id="back-sound" src="togglesound.mp3" preload="auto"></audio>
-<a href="index.html" class="font-bold font-[Poppins] back-button" title="กลับหน้าหลัก" onclick="playBackSound(event)">Back</a>
+<a href="index.html" class="font-bold font-[Poppins] back-button" title="กลับหน้าหลัก" onclick="">Back</a>
 
   <audio id="bg-music" autoplay loop></audio>
 
@@ -50,22 +50,20 @@
     </div>
 
     <!-- ปุ่มแปลทันที -->
-<button onclick="translateText()" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl text-lg font-bold shadow-md transition duration-300 hover:scale-[1.02] active:scale-[0.98] mb-4">
-  🔁 แปลทันที
-</button>
+    <button onclick="translateText()" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl text-lg font-bold shadow-md transition duration-300 hover:scale-[1.02] active:scale-[0.98] mb-4">
+      🔁 แปลทันที
+    </button>
 
     <div class="bg-white/40 backdrop-blur-md rounded-xl p-4 mb-4 shadow-inner border border-white/30">
       <p class="text-sm  font-semibold text-gray-700">ผลลัพธ์</p>
       <p id="outputText" class="text-xl font-bold font-[Poppins] text-gray-900 mt-2 break-words whitespace-pre-line"></p>
     </div>
 
-
-
-<!-- ปุ่มฟังเสียง -->
-<button onclick="speakText()" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl text-lg font-bold shadow-md transition duration-300 hover:scale-[1.02] active:scale-[0.98]">
-  🔊 ฟังเสียง
-</button>
-
+    <!-- ปุ่มฟังเสียง -->
+    <button onclick="speakText()" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl text-lg font-bold shadow-md transition duration-300 hover:scale-[1.02] active:scale-[0.98]">
+      🔊 ฟังเสียง
+    </button>
+  </div>
 
   <script>
     const flagMap = {
@@ -81,15 +79,21 @@
     document.getElementById('targetLang').addEventListener('change', (e) => {
       document.getElementById('flag-target').src = flagMap[e.target.value];
     });
+   function playBackSound(event) {
+    event.preventDefault(); // กันการเปลี่ยนหน้าทันที
+    const audio = document.getElementById("back-sound");
+    audio.play();
 
-    function playBackSound(event) {
-      event.preventDefault();
-      const audio = document.getElementById("back-sound");
-      audio.play();
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 300);
-    }
+    // เปลี่ยนหน้า หลังจากเสียงเล่น (เช่น รอ 300ms)
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 300);
+  }
+  function playBackSound(event) {
+    // Play sound logic
+    window.location.href = 'index.html'; // This will navigate to index.html
+}
+
   </script>
 
   <script src="m5.js"></script>
